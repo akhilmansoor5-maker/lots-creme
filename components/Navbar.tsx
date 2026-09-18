@@ -100,7 +100,7 @@ export function Navbar() {
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-gold hidden min-h-11 px-4 text-[13px] sm:inline-flex sm:px-7"
+            className="btn btn-gold btn-nav hidden sm:inline-flex"
           >
             Order Now
           </a>
@@ -154,7 +154,7 @@ export function Navbar() {
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-gold mt-8 w-full"
+              className="btn btn-gold btn-nav mt-8 w-full"
             >
               Order on WhatsApp
             </a>

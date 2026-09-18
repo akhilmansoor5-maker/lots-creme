@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { SwipeRow } from "@/components/SwipeRow";
 import { images, site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default function AboutPage() {
               </a>
             </div>
           </div>
-          <div className="relative h-[360px] overflow-hidden rounded-2xl">
+          <div className="relative hidden h-[360px] overflow-hidden rounded-2xl md:block">
             <Image
               src={images.roseCake.src}
               alt={images.roseCake.alt}
@@ -63,6 +64,15 @@ export default function AboutPage() {
               sizes="560px"
               className="object-cover"
             />
+          </div>
+          <div className="md:hidden">
+            <SwipeRow label="the studio" size="film">
+              {[images.roseCake, images.storefront, images.terrace].map((img) => (
+                <div key={img.src} className="relative overflow-hidden rounded-2xl">
+                  <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
+                </div>
+              ))}
+            </SwipeRow>
           </div>
         </div>
       </section>

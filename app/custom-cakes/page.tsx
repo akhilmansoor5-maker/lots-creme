@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
 import { InquiryForm } from "@/components/InquiryForm";
 import { PageHero } from "@/components/PageHero";
+import { SwipeRow } from "@/components/SwipeRow";
 import { images } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -49,18 +50,20 @@ export default function CustomCakesPage() {
             <p className="eyebrow mb-2">How it works</p>
             <h2 className="display-lg text-charcoal">Three steps, then WhatsApp</h2>
           </div>
-          <div className="mb-8 grid gap-3 md:grid-cols-3">
-            {steps.map((step) => (
-              <div
-                key={step.n}
-                className="rounded-2xl p-5"
-                style={{ background: "var(--card)" }}
-              >
-                <span className="step-num">{step.n}</span>
-                <h3 className="display-md mt-4 text-charcoal">{step.title}</h3>
-                <p className="body-lg mt-2">{step.text}</p>
-              </div>
-            ))}
+          <div className="mb-8">
+            <SwipeRow label="how it works" cols="3" size="panel">
+              {steps.map((step) => (
+                <div
+                  key={step.n}
+                  className="rounded-2xl p-5"
+                  style={{ background: "var(--card)" }}
+                >
+                  <span className="step-num">{step.n}</span>
+                  <h3 className="display-md mt-4 text-charcoal">{step.title}</h3>
+                  <p className="body-lg mt-2">{step.text}</p>
+                </div>
+              ))}
+            </SwipeRow>
           </div>
 
           <div className="grid items-start gap-6 lg:grid-cols-2">
@@ -72,7 +75,7 @@ export default function CustomCakesPage() {
               <h2 className="display-md mb-6">Send it on WhatsApp</h2>
               <InquiryForm />
             </div>
-            <div className="grid gap-4">
+            <div className="hidden gap-4 lg:grid">
               <div className="relative min-h-[260px] overflow-hidden rounded-2xl sm:min-h-[320px]">
                 <Image
                   src={images.themeCake.src}
@@ -89,6 +92,15 @@ export default function CustomCakesPage() {
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="lg:hidden">
+              <SwipeRow label="custom cake photos" size="film">
+                {[images.themeCake, images.heartCake, images.celebrationCake].map((img) => (
+                  <div key={img.src} className="relative overflow-hidden rounded-2xl">
+                    <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
+                  </div>
+                ))}
+              </SwipeRow>
             </div>
           </div>
         </div>

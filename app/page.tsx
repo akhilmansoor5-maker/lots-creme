@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
+import { SwipeRow } from "@/components/SwipeRow";
 import { images, site } from "@/data/site";
 
 const collections = [
@@ -99,7 +100,7 @@ export default function HomePage() {
               WhatsApp {site.phoneDisplay}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="hidden grid-cols-2 gap-3 md:grid">
             {[images.roseCake, images.heartCake, images.lilacCake, images.celebrationCake].map(
               (img, i) => (
                 <div
@@ -116,6 +117,17 @@ export default function HomePage() {
               )
             )}
           </div>
+          <div className="md:hidden">
+            <SwipeRow label="cakes in the shop" size="film">
+              {[images.roseCake, images.heartCake, images.lilacCake, images.celebrationCake].map(
+                (img) => (
+                  <div key={img.src} className="relative overflow-hidden rounded-2xl">
+                    <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
+                  </div>
+                )
+              )}
+            </SwipeRow>
+          </div>
         </div>
       </section>
 
@@ -125,7 +137,7 @@ export default function HomePage() {
             <p className="eyebrow mb-3">Collections</p>
             <h2 className="display-lg text-charcoal">Cakes, custom work, and the shop</h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <SwipeRow label="collections" cols="4">
             {collections.map((item) => (
               <Link key={item.href} href={item.href} className="cat-card">
                 <Image
@@ -144,7 +156,7 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
-          </div>
+          </SwipeRow>
         </div>
       </section>
 

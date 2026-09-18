@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { SwipeRow } from "@/components/SwipeRow";
 import { images, menuSections, site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function MenuPage() {
 
       <section className="section-pad" style={{ background: "var(--ivory)" }}>
         <div className="container">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <SwipeRow label="menu" cols="3">
             {menuSections.map((item) => (
               <Link
                 key={item.name}
@@ -49,7 +50,7 @@ export default function MenuPage() {
                 </div>
               </Link>
             ))}
-          </div>
+          </SwipeRow>
 
           <div className="stack-btns mt-8">
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-gold">

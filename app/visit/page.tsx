@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { SwipeRow } from "@/components/SwipeRow";
 import { images, site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function VisitPage() {
 
       <section className="section-pad" style={{ background: "var(--ivory)" }}>
         <div className="container">
-          <div className="relative mb-6 h-[240px] overflow-hidden rounded-2xl sm:h-[320px]">
+          <div className="relative mb-6 hidden h-[320px] overflow-hidden rounded-2xl md:block">
             <Image
               src={images.shopNight.src}
               alt={images.shopNight.alt}
@@ -31,6 +32,15 @@ export default function VisitPage() {
               sizes="1120px"
               className="object-cover"
             />
+          </div>
+          <div className="mb-6 md:hidden">
+            <SwipeRow label="the shop" size="film">
+              {[images.shopNight, images.storefront, images.terrace].map((img) => (
+                <div key={img.src} className="relative overflow-hidden rounded-2xl">
+                  <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
+                </div>
+              ))}
+            </SwipeRow>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
@@ -60,7 +70,7 @@ export default function VisitPage() {
                   </dd>
                 </div>
               </dl>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="stack-btns mt-6 justify-start">
                 <a href={site.maps} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
                   Google Maps
                 </a>

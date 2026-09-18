@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { SwipeRow } from "@/components/SwipeRow";
 import { images, site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -70,14 +71,14 @@ export default function CakesPage() {
                 href={site.whatsappCustom}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-gold mt-5 w-full sm:w-fit"
+                className="btn btn-gold mt-5"
               >
                 Enquire on WhatsApp
               </a>
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <SwipeRow label="cakes" cols="2">
             {cakes.map((cake) => {
               const inner = (
                 <>
@@ -110,7 +111,7 @@ export default function CakesPage() {
                 </article>
               );
             })}
-          </div>
+          </SwipeRow>
         </div>
       </section>
 

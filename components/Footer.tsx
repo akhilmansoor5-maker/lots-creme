@@ -24,7 +24,7 @@ export function Footer() {
           href={site.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-gold"
+          className="btn btn-gold btn-nav"
         >
           WhatsApp
         </a>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { SwipeRow } from "@/components/SwipeRow";
 import { gallery, images } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -21,16 +22,18 @@ export default function GalleryPage() {
       </PageHero>
 
       <section className="section-pad" style={{ background: "var(--ivory)" }}>
-        <div className="container columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {gallery.map((item) => (
-            <figure
-              key={item.src}
-              className="relative mb-4 overflow-hidden rounded-2xl"
-              style={{ height: item.span === "wide" ? 240 : 320 }}
-            >
-              <Image src={item.src} alt={item.alt} fill sizes="400px" className="object-cover" />
-            </figure>
-          ))}
+        <div className="container">
+          <SwipeRow label="gallery" cols="masonry" size="film">
+            {gallery.map((item) => (
+              <figure
+                key={item.src}
+                className="relative overflow-hidden rounded-2xl"
+                style={{ height: item.span === "wide" ? 240 : 320 }}
+              >
+                <Image src={item.src} alt={item.alt} fill sizes="400px" className="object-cover" />
+              </figure>
+            ))}
+          </SwipeRow>
         </div>
       </section>
 
