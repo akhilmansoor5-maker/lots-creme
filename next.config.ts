@@ -4,12 +4,16 @@ import { fileURLToPath } from "node:url";
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 const isGithubPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGithubPages ? "/lots-creme" : "";
 
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
-  basePath: isGithubPages ? "/lots-creme" : "",
-  assetPrefix: isGithubPages ? "/lots-creme" : "",
+  basePath,
+  assetPrefix: basePath,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   turbopack: {
     root: projectRoot,
   },

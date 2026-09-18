@@ -32,83 +32,70 @@ export const navLinks = [
   { label: "Visit", href: "/visit" },
 ] as const;
 
+const photo = (src: string, alt: string) => ({
+  src: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`,
+  alt,
+});
+
 export const images = {
-  roseCake: {
-    src: "/images/lots-creme/hero-cake-crop.jpg",
-    alt: "A long cream cake finished with red roses",
-  },
-  heartCake: {
-    src: "/images/lots-creme/floral-cake-crop.jpg",
-    alt: "Heart-shaped chocolate cake with a cascade of red roses",
-  },
-  lilacCake: {
-    src: "/images/lots-creme/wedding-cake-crop.jpg",
-    alt: "Two-tier cake in white and lilac, with purple roses",
-  },
-  celebrationCake: {
-    src: "/images/lots-creme/celebration-cake.jpg",
-    alt: "A colourful celebration cake with butterflies and stars",
-  },
-  themeCake: {
-    src: "/images/lots-creme/theme-cake.jpg",
-    alt: "A custom theme cake with gold lettering",
-  },
-  cakeDisplay: {
-    src: "/images/lots-creme/cake-display.jpg",
-    alt: "Cakes on display at Lots. Crème",
-  },
-  pastryDessert: {
-    src: "/images/lots-creme/pastry-dessert.jpg",
-    alt: "Pastry and dessert from Lots. Crème",
-  },
-  storefront: {
-    src: "/images/lots-creme/store-exterior.jpg",
-    alt: "The Lots. Crème corner building in Manjeri, lit at night",
-  },
-  storeWide: {
-    src: "/images/lots-creme/maps-interior-01.jpg",
-    alt: "Lots. Crème storefront and courtyard",
-  },
-  terrace: {
-    src: "/images/lots-creme/store-terrace.jpg",
-    alt: "Covered terrace and outdoor seating at Lots. Crème",
-  },
-  storeClose: {
-    src: "/images/lots-creme/maps-store-03.jpg",
-    alt: "Close view of the teal façade and windows",
-  },
-  shopNight: {
-    src: "/images/lots-creme/maps-display-01.jpg",
-    alt: "Lots. Crème lit at night on Industrial Estate Road",
-  },
-  heroMenu: {
-    src: "/images/lots-creme/hero-menu.png",
-    alt: "Cakes and pastry in the case",
-  },
-  heroCakes: {
-    src: "/images/lots-creme/hero-cakes.png",
-    alt: "A cream cake finished with roses",
-  },
-  heroCustom: {
-    src: "/images/lots-creme/hero-custom.png",
-    alt: "A custom cake with red roses",
-  },
-  heroGallery: {
-    src: "/images/lots-creme/hero-gallery.png",
-    alt: "Finished cakes on the bench",
-  },
-  heroAbout: {
-    src: "/images/lots-creme/hero-about.png",
-    alt: "Inside the patisserie",
-  },
-  heroVisit: {
-    src: "/images/lots-creme/hero-visit.png",
-    alt: "The shop terrace in Manjeri",
-  },
-  waffles: {
-    src: "/images/lots-creme/waffles.png",
-    alt: "A waffle served with ice cream and berries",
-  },
+  roseCake: photo(
+    "/images/lots-creme/hero-cake-crop.jpg",
+    "A long cream cake finished with red roses",
+  ),
+  heartCake: photo(
+    "/images/lots-creme/floral-cake-crop.jpg",
+    "Heart-shaped chocolate cake with a cascade of red roses",
+  ),
+  lilacCake: photo(
+    "/images/lots-creme/wedding-cake-crop.jpg",
+    "Two-tier cake in white and lilac, with purple roses",
+  ),
+  celebrationCake: photo(
+    "/images/lots-creme/celebration-cake.jpg",
+    "A colourful celebration cake with butterflies and stars",
+  ),
+  themeCake: photo(
+    "/images/lots-creme/theme-cake.jpg",
+    "A custom theme cake with gold lettering",
+  ),
+  cakeDisplay: photo(
+    "/images/lots-creme/cake-display.jpg",
+    "Cakes on display at Lots. Crème",
+  ),
+  pastryDessert: photo(
+    "/images/lots-creme/pastry-dessert.jpg",
+    "Pastry and dessert from Lots. Crème",
+  ),
+  storefront: photo(
+    "/images/lots-creme/store-exterior.jpg",
+    "The Lots. Crème corner building in Manjeri, lit at night",
+  ),
+  storeWide: photo(
+    "/images/lots-creme/maps-interior-01.jpg",
+    "Lots. Crème storefront and courtyard",
+  ),
+  terrace: photo(
+    "/images/lots-creme/store-terrace.jpg",
+    "Covered terrace and outdoor seating at Lots. Crème",
+  ),
+  storeClose: photo(
+    "/images/lots-creme/maps-store-03.jpg",
+    "Close view of the teal façade and windows",
+  ),
+  shopNight: photo(
+    "/images/lots-creme/maps-display-01.jpg",
+    "Lots. Crème lit at night on Industrial Estate Road",
+  ),
+  heroMenu: photo("/images/lots-creme/hero-menu.png", "Cakes and pastry in the case"),
+  heroCakes: photo("/images/lots-creme/hero-cakes.png", "A cream cake finished with roses"),
+  heroCustom: photo("/images/lots-creme/hero-custom.png", "A custom cake with red roses"),
+  heroGallery: photo("/images/lots-creme/hero-gallery.png", "Finished cakes on the bench"),
+  heroAbout: photo("/images/lots-creme/hero-about.png", "Inside the patisserie"),
+  heroVisit: photo("/images/lots-creme/hero-visit.png", "The shop terrace in Manjeri"),
+  waffles: photo(
+    "/images/lots-creme/waffles.png",
+    "A waffle served with ice cream and berries",
+  ),
 } as const;
 
 export const menuSections = [
