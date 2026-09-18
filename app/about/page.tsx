@@ -67,6 +67,31 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="section-pad" style={{ background: "var(--card)" }}>
+        <div className="container">
+          <div className="mb-8">
+            <p className="eyebrow mb-3">The team</p>
+            <h2 className="display-lg text-charcoal">The people behind Lots. Crème</h2>
+          </div>
+          <div className="grid items-center gap-8 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr]">
+            <div className="photo-holder" aria-label="Team photo placeholder">
+              <p>Photo</p>
+              <span>A team portrait goes here</span>
+            </div>
+            <div>
+              <p className="team-quote">
+                Cakes, pastry and dessert — made by hand, in Manjeri.
+              </p>
+              <p className="team-quote-attr">Lots. Crème</p>
+              <p className="body-lg mt-5 max-w-md">
+                The studio is small. The work is cakes from the case, and cakes
+                made for a date.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CtaBand />
     </main>
   );

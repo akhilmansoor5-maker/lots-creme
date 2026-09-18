@@ -38,7 +38,7 @@ export default function HomePage() {
 
         <div className="home-hero-inner">
           <div className="hero-copy max-w-3xl">
-            <p className="eyebrow mb-4" style={{ color: "var(--gold)" }}>
+            <p className="eyebrow mb-4">
               Manjeri · Kerala
             </p>
             <h1 className="display-xl text-white">
@@ -138,7 +138,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <p className="text-lg font-semibold text-white">{item.label}</p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold">
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--gold-on-dark)" }}>
                     View
                   </p>
                 </div>

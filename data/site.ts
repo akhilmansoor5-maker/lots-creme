@@ -105,6 +105,10 @@ export const images = {
     src: "/images/lots-creme/hero-visit.png",
     alt: "The shop terrace in Manjeri",
   },
+  waffles: {
+    src: "/images/lots-creme/waffles.png",
+    alt: "A waffle served with ice cream and berries",
+  },
 } as const;
 
 export const menuSections = [
@@ -136,7 +140,7 @@ export const menuSections = [
     name: "Waffles",
     href: "/menu#waffles",
     note: "Served in the cafe.",
-    image: images.terrace.src,
+    image: images.waffles.src,
   },
   {
     name: "Custom cakes",

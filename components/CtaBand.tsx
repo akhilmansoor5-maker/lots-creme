@@ -17,7 +17,7 @@ export function CtaBand({
           <p className="eyebrow mb-4">Visit or order</p>
           <h2 className="display-lg text-white">{title}</h2>
           <p className="mx-auto mt-4 max-w-md text-white/70">{text}</p>
-          <div className="stack-btns mt-6">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={site.whatsapp}
               target="_blank"

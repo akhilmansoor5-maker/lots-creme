@@ -60,7 +60,7 @@ export default function VisitPage() {
                   </dd>
                 </div>
               </dl>
-              <div className="stack-btns mt-6 justify-start">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <a href={site.maps} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
                   Google Maps
                 </a>
