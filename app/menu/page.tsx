@@ -26,7 +26,7 @@ export default function MenuPage() {
         </p>
       </PageHero>
 
-      <section className="section-pad" style={{ background: "var(--ivory)" }}>
+      <section className="page-section section-pad" style={{ background: "var(--ivory)" }}>
         <div className="container">
           <SwipeRow label="menu" cols="3">
             {menuSections.map((item) => (
