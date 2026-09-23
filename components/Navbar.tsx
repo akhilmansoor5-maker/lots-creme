@@ -5,8 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks, site } from "@/data/site";
 
+function cleanPath(path: string) {
+  const next = path.replace(/\/$/, "");
+  return next || "/";
+}
+
 export function Navbar() {
   const pathname = usePathname();
+  const current = cleanPath(pathname);
+  const isHome = current === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -29,15 +36,14 @@ export function Navbar() {
     };
   }, [open]);
 
-  const solid = scrolled || open;
+  const solid = scrolled || open || !isHome;
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+      className="site-header"
       style={{
         background: solid ? "rgba(247,242,232,0.96)" : "transparent",
         boxShadow: solid ? "0 2px 20px rgba(18,63,74,0.08)" : "none",
-        paddingTop: "env(safe-area-inset-top)",
       }}
     >
       <a
@@ -72,7 +78,7 @@ export function Navbar() {
           aria-label="Primary"
         >
           {navLinks.map((link) => {
-            const active = pathname === link.href;
+            const active = current === cleanPath(link.href);
             return (
               <Link
                 key={link.href}
@@ -132,12 +138,7 @@ export function Navbar() {
 
       {open ? (
         <div
-          className="fixed inset-x-0 bottom-0 z-40 overflow-y-auto lg:hidden"
-          style={{
-            top: "calc(64px + env(safe-area-inset-top))",
-            background: "var(--ivory)",
-            paddingBottom: "calc(28px + env(safe-area-inset-bottom))",
-          }}
+          className="site-menu-panel lg:hidden"
         >
           <nav className="container flex flex-col py-6" aria-label="Mobile">
             {navLinks.map((link) => (

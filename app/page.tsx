@@ -23,7 +23,7 @@ const marquee = [
 export default function HomePage() {
   return (
     <main id="main">
-      <section className="relative min-h-[100svh] overflow-hidden">
+      <section className="home-hero">
         <Image
           src={images.terrace.src}
           alt={images.terrace.alt}
