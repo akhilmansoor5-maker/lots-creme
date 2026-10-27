@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navLinks, site } from "@/data/site";
+import { images, navLinks, site } from "@/data/site";
 
 function cleanPath(path: string) {
   const next = path.replace(/\/$/, "");
@@ -16,12 +17,21 @@ export function Navbar() {
   const isHome = current === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [wide, setWide] = useState(true);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 900px)");
+    const sync = () => setWide(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
@@ -37,13 +47,14 @@ export function Navbar() {
   }, [open]);
 
   const solid = scrolled || open || !isHome;
+  const darkInk = solid || (isHome && wide);
 
   return (
     <header
       className="site-header"
       style={{
-        background: solid ? "rgba(247,242,232,0.96)" : "transparent",
-        boxShadow: solid ? "0 2px 20px rgba(18,63,74,0.08)" : "none",
+        background: solid ? "rgba(245,241,234,0.96)" : "transparent",
+        boxShadow: solid ? "0 2px 20px rgba(30,86,116,0.08)" : "none",
       }}
     >
       <a
@@ -53,27 +64,42 @@ export function Navbar() {
         Skip to content
       </a>
 
-      <div className="container flex h-16 items-center justify-between gap-3 sm:h-20">
-        <Link href="/" className="min-w-0" onClick={() => setOpen(false)}>
-          <p
-            className="truncate text-[13px] font-semibold uppercase tracking-[0.14em] sm:text-[15px] sm:tracking-[0.16em]"
-            style={{ color: solid ? "var(--charcoal)" : "#fff" }}
-          >
-            Lots. Crème
-          </p>
-          <p
-            className="text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: solid ? "var(--muted)" : "rgba(255,255,255,0.65)" }}
-          >
-            Manjeri
-          </p>
+      <div className="container flex h-16 items-center justify-between gap-3 sm:h-[4.5rem]">
+        <Link
+          href="/"
+          className="site-logo-link min-w-0"
+          aria-label={site.wordmark}
+          onClick={() => setOpen(false)}
+        >
+          <Image
+            src={images.logo.src}
+            alt=""
+            width={40}
+            height={40}
+            className="site-logo-mark"
+            priority
+          />
+          <span className="site-logo-text">
+            <span
+              className="site-wordmark"
+              style={{ color: darkInk ? "var(--charcoal)" : "#fff" }}
+            >
+              {site.mark}
+            </span>
+            <span
+              className="site-wordmark-sub"
+              style={{ color: darkInk ? "var(--muted)" : "rgba(255,255,255,0.72)" }}
+            >
+              {site.tagline}
+            </span>
+          </span>
         </Link>
 
         <nav
           className="hidden items-center gap-1 rounded-full px-1.5 py-1 lg:flex"
           style={{
-            border: `1px solid ${solid ? "var(--border)" : "rgba(255,255,255,0.22)"}`,
-            background: solid ? "var(--ivory)" : "rgba(255,255,255,0.08)",
+            border: `1px solid ${darkInk ? "var(--border)" : "rgba(255,255,255,0.22)"}`,
+            background: darkInk ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.1)",
           }}
           aria-label="Primary"
         >
@@ -85,13 +111,13 @@ export function Navbar() {
                 href={link.href}
                 className="rounded-full px-4 py-2 text-[13px] font-medium"
                 style={{
-                  color: solid
+                  color: darkInk
                     ? active
                       ? "var(--teal)"
                       : "var(--charcoal)"
                     : active
                       ? "var(--charcoal)"
-                      : "rgba(255,255,255,0.9)",
+                      : "rgba(255,255,255,0.92)",
                   background: active ? "#fff" : "transparent",
                 }}
               >
@@ -115,8 +141,8 @@ export function Navbar() {
             className="flex h-11 w-11 items-center justify-center lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            style={{ color: solid ? "var(--charcoal)" : "#fff" }}
+            onClick={() => setOpen((value) => !value)}
+            style={{ color: darkInk ? "var(--charcoal)" : "#fff" }}
           >
             <span className="relative block h-3.5 w-5">
               <span
@@ -137,9 +163,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div
-          className="site-menu-panel lg:hidden"
-        >
+        <div className="site-menu-panel lg:hidden">
           <nav className="container flex flex-col py-6" aria-label="Mobile">
             {navLinks.map((link) => (
               <Link

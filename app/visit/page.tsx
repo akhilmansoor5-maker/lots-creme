@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
-import { SwipeRow } from "@/components/SwipeRow";
+import { PartyHallPanel } from "@/components/PartyHallPanel";
 import { images, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Visit",
   description:
-    "Find Lots. Crème at SJ Century Complex, near GGHSS, Manjeri.",
+    "Find Lots. Crème at Kovilamkundu, Chengana Bypass, Kacherippadi, Manjeri.",
 };
 
 export default function VisitPage() {
@@ -17,30 +16,15 @@ export default function VisitPage() {
       <PageHero
         eyebrow="Visit"
         title="Manjeri"
-        image={images.heroVisit.src}
+        image={images.storefrontDay.src}
       >
-        <p>Patisserie on Industrial Estate Road, near GGHSS.</p>
+        <p>Pâtisserie at Kovilamkundu, Chengana Bypass, Kacherippadi.</p>
       </PageHero>
 
       <section className="section-pad" style={{ background: "var(--ivory)" }}>
         <div className="container">
-          <div className="relative mb-6 hidden h-[320px] overflow-hidden rounded-2xl md:block">
-            <Image
-              src={images.shopNight.src}
-              alt={images.shopNight.alt}
-              fill
-              sizes="1120px"
-              className="object-cover"
-            />
-          </div>
-          <div className="mb-6 md:hidden">
-            <SwipeRow label="the shop" size="film">
-              {[images.shopNight, images.storefront, images.terrace].map((img) => (
-                <div key={img.src} className="relative overflow-hidden rounded-2xl">
-                  <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
-                </div>
-              ))}
-            </SwipeRow>
+          <div className="mark-panel mb-6">
+            <Image src={images.logo.src} alt={site.wordmark} width={112} height={112} />
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
@@ -92,7 +76,29 @@ export default function VisitPage() {
         </div>
       </section>
 
-      <CtaBand title="See you at the shop" />
+      <section
+        id="party-hall"
+        className="menu-group page-section section-pad"
+        style={{ background: "var(--card)" }}
+      >
+        <div className="container">
+          <PartyHallPanel>
+            <div className="stack-btns">
+              <a
+                href={site.whatsappParty}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-gold"
+              >
+                Enquire on WhatsApp
+              </a>
+              <a href={`tel:${site.phoneTel}`} className="btn btn-outline-dark">
+                Call {site.phoneDisplay}
+              </a>
+            </div>
+          </PartyHallPanel>
+        </div>
+      </section>
     </main>
   );
 }

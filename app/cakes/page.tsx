@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { SwipeRow } from "@/components/SwipeRow";
-import { images, site } from "@/data/site";
+import { images } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Cakes",
@@ -14,25 +13,25 @@ export const metadata: Metadata = {
 
 const cakes = [
   {
-    image: images.roseCake,
+    image: images.caseClear,
     title: "Cakes from the case",
     text: "Cream cakes and finished cakes, ready to take home.",
   },
   {
-    image: images.heartCake,
+    image: images.whiteRoseCake,
     title: "Custom cakes",
     text: "Shapes, colours and flowers specified by you.",
     href: "/custom-cakes",
   },
   {
-    image: images.lilacCake,
+    image: images.roseSlab,
     title: "Wedding cakes",
     text: "Tiers and smaller cakes. Start with the date.",
   },
   {
-    image: images.celebrationCake,
+    image: images.rainbowCake,
     title: "Birthdays",
-    text: "Names, numbers, and cakes for a celebration.",
+    text: "Numbers, colours, and cakes for a celebration.",
   },
 ];
 
@@ -42,7 +41,7 @@ export default function CakesPage() {
       <PageHero
         eyebrow="Cakes"
         title="Celebration cakes and wedding cakes"
-        image={images.heroCakes.src}
+        image={images.roseSlab.src}
       >
         <p>
           From a cream cake in the case to a cake made for a wedding. Tell us
@@ -52,29 +51,21 @@ export default function CakesPage() {
 
       <section className="section-pad" style={{ background: "var(--ivory)" }}>
         <div className="container">
-          <div className="relative mb-5 min-h-[280px] overflow-hidden rounded-2xl sm:min-h-[320px]">
+          <div className="relative mb-5 min-h-[280px] overflow-hidden rounded-2xl sm:min-h-[380px]">
             <Image
-              src={images.lilacCake.src}
-              alt={images.lilacCake.alt}
+              src={images.whiteRoseCake.src}
+              alt={images.whiteRoseCake.alt}
               fill
               sizes="1120px"
               className="object-cover"
             />
             <div className="absolute inset-0 hidden bg-gradient-to-r from-black/75 via-black/40 to-transparent sm:block" />
             <div className="banner-copy sm:p-10">
-              <p className="eyebrow mb-2">Wedding cakes</p>
-              <h2 className="display-lg max-w-lg text-white">Tiers, flowers, and a date on the calendar</h2>
+              <p className="eyebrow mb-2">Celebration cakes</p>
+              <h2 className="display-lg max-w-lg text-white">Flowers, and a date on the calendar</h2>
               <p className="hero-sub mt-3 max-w-md">
-                Start with the day. We will talk size, finish, and flavour on WhatsApp.
+                Start with the day. Size, finish, and flavour follow.
               </p>
-              <a
-                href={site.whatsappCustom}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-gold mt-5"
-              >
-                Enquire on WhatsApp
-              </a>
             </div>
           </div>
 
@@ -114,8 +105,6 @@ export default function CakesPage() {
           </SwipeRow>
         </div>
       </section>
-
-      <CtaBand title="Need a cake for a date? Write first." />
     </main>
   );
 }

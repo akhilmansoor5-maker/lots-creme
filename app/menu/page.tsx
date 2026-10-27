@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { PartyHallPanel } from "@/components/PartyHallPanel";
 import { SwipeRow } from "@/components/SwipeRow";
 import { images, menuSections, site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Menu",
   description:
-    "Cakes, pastries, cheesecakes, desserts, waffles and custom cakes at Lots. Crème in Manjeri.",
+    "Coffee, pastries, cheesecakes, desserts, waffles and cakes at Lots. Crème in Manjeri.",
 };
 
 export default function MenuPage() {
@@ -17,13 +17,10 @@ export default function MenuPage() {
     <main id="main">
       <PageHero
         eyebrow="Menu"
-        title="What is in the case, and what we make for a date"
-        image={images.heroMenu.src}
+        title="Coffee, pastry, waffles, and cakes"
+        image={images.tableSpread.src}
       >
-        <p>
-          See the shop when you visit. For a cake on a particular day, write on
-          WhatsApp. Prices are not listed here.
-        </p>
+        <p>See the shop when you visit. For a cake on a particular day, write first.</p>
       </PageHero>
 
       <section className="page-section section-pad" style={{ background: "var(--ivory)" }}>
@@ -51,19 +48,28 @@ export default function MenuPage() {
               </Link>
             ))}
           </SwipeRow>
-
-          <div className="stack-btns mt-8">
-            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
-              Order on WhatsApp
-            </a>
-            <Link href="/cakes" className="btn btn-outline-dark">
-              See cakes
-            </Link>
-          </div>
         </div>
       </section>
 
-      <CtaBand title="Ask what is in today, or order a cake" />
+      <section id="party-hall" className="page-section section-pad" style={{ background: "var(--card)" }}>
+        <div className="container">
+          <PartyHallPanel compact>
+            <div className="stack-btns">
+              <Link href="/visit#party-hall" className="btn btn-gold">
+                Party hall details
+              </Link>
+              <a
+                href={site.whatsappParty}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-dark"
+              >
+                Enquire on WhatsApp
+              </a>
+            </div>
+          </PartyHallPanel>
+        </div>
+      </section>
     </main>
   );
 }

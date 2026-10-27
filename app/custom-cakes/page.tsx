@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CtaBand } from "@/components/CtaBand";
 import { InquiryForm } from "@/components/InquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { SwipeRow } from "@/components/SwipeRow";
@@ -26,7 +25,7 @@ const steps = [
   {
     n: "03",
     title: "Collect from the shop",
-    text: "Pickup at SJ Century Complex. We will confirm the time on WhatsApp.",
+    text: "Pickup at Kovilamkundu, Chengana Bypass. We will confirm the time on WhatsApp.",
   },
 ];
 
@@ -36,7 +35,7 @@ export default function CustomCakesPage() {
       <PageHero
         eyebrow="Custom cakes"
         title="Tell us the date. We will talk about the cake."
-        image={images.heroCustom.src}
+        image={images.whiteRoseCake.src}
       >
         <p>
           Birthdays, weddings and cakes made for a specific day. Send the
@@ -78,15 +77,15 @@ export default function CustomCakesPage() {
             <div className="hidden gap-4 lg:grid">
               <div className="relative min-h-[260px] overflow-hidden rounded-2xl sm:min-h-[320px]">
                 <Image
-                  src={images.themeCake.src}
-                  alt={images.themeCake.alt}
+                  src={images.roseSlab.src}
+                  alt={images.roseSlab.alt}
                   fill
                   sizes="560px"
                   className="object-cover"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
-                {[images.heartCake, images.celebrationCake].map((img) => (
+                {[images.whiteRoseCake, images.rainbowCake].map((img) => (
                   <div key={img.src} className="relative h-36 overflow-hidden rounded-2xl sm:h-44">
                     <Image src={img.src} alt={img.alt} fill sizes="280px" className="object-cover" />
                   </div>
@@ -95,7 +94,7 @@ export default function CustomCakesPage() {
             </div>
             <div className="lg:hidden">
               <SwipeRow label="custom cake photos" size="film">
-                {[images.themeCake, images.heartCake, images.celebrationCake].map((img) => (
+                {[images.roseSlab, images.whiteRoseCake, images.rainbowCake].map((img) => (
                   <div key={img.src} className="relative overflow-hidden rounded-2xl">
                     <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
                   </div>
@@ -105,8 +104,6 @@ export default function CustomCakesPage() {
           </div>
         </div>
       </section>
-
-      <CtaBand title="Prefer to talk first? Open WhatsApp." />
     </main>
   );
 }

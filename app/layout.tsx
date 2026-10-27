@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const display = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const sans = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     template: "%s | Lots. Crème",
   },
   description:
-    "Cakes, pastries, cheesecakes and desserts at Lots. Crème, a patisserie and dessert studio in Manjeri.",
+    "French pastry, coffee, waffles and cakes at Lots. Crème, a pâtisserie cafe in Kovilamkundu, Manjeri.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#123F4A",
+  themeColor: "#6BAED6",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${poppins.variable} ${inter.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ivory font-sans text-charcoal">
         <Navbar />

@@ -1,68 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CtaBand } from "@/components/CtaBand";
+import { HeroFilm } from "@/components/HeroFilm";
+import { PartyHallPanel } from "@/components/PartyHallPanel";
 import { SwipeRow } from "@/components/SwipeRow";
-import { images, site } from "@/data/site";
+import { heroFilms, images, shopMosaic, site } from "@/data/site";
 
 const collections = [
-  { label: "Cakes", href: "/cakes", img: images.roseCake },
-  { label: "Custom cakes", href: "/custom-cakes", img: images.heartCake },
-  { label: "Gallery", href: "/gallery", img: images.lilacCake },
-  { label: "Visit the shop", href: "/visit", img: images.storefront },
+  { label: "Menu", href: "/menu", img: images.wafflePlate },
+  { label: "Cakes", href: "/cakes", img: images.roseSlab },
+  { label: "Custom cakes", href: "/custom-cakes", img: images.bearCake },
+  { label: "Visit the shop", href: "/visit", img: images.storefrontDay },
 ];
 
 const marquee = [
-  "Cakes",
+  "Coffee",
   "Pastries",
   "Cheesecakes",
-  "Desserts",
   "Waffles",
-  "Custom cakes",
+  "Cakes",
+  "Party hall",
 ];
 
 export default function HomePage() {
   return (
     <main id="main">
       <section className="home-hero">
-        <Image
-          src={images.terrace.src}
-          alt={images.terrace.alt}
-          fill
-          fetchPriority="high"
-          loading="eager"
-          quality={90}
-          sizes="100vw"
-          className="object-cover object-[center_42%]"
-        />
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/25" />
-
-        <div className="home-hero-inner">
-          <div className="hero-copy max-w-3xl">
-            <p className="eyebrow mb-4">
-              Manjeri · Kerala
-            </p>
-            <h1 className="display-xl text-white">
-              Cakes and dessert, made in Manjeri
-            </h1>
-            <p className="hero-sub mx-auto mt-5 max-w-xl">
-              Patisserie at SJ Century Complex. Pastries, cheesecakes, waffles,
-              and custom cakes — come in, or order on WhatsApp.
-            </p>
-            <div className="stack-btns mt-8">
-              <Link href="/menu" className="btn btn-gold">
-                See the menu
-              </Link>
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-white"
-              >
-                Order on WhatsApp
-              </a>
-            </div>
+        <div className="home-hero-copy">
+          <p className="eyebrow">Manjeri · Kerala</p>
+          <h1 className="display-xl">
+            A French table in <span className="hero-place">Kovilamkundu</span>
+          </h1>
+          <p className="hero-lede">
+            Pastry, coffee, waffles and cakes — made by hand, served in the cafe.
+          </p>
+          <div className="stack-btns justify-start">
+            <Link href="/menu" className="btn btn-gold">
+              See the menu
+            </Link>
+            <Link href="/visit" className="btn btn-outline-hero">
+              Visit the shop
+            </Link>
           </div>
+          <p className="shop-hours">{site.hoursDaily}</p>
+        </div>
+
+        <div className="home-hero-stage">
+          <HeroFilm sources={heroFilms} poster={images.heroPoster.src} />
+          <div className="home-hero-veil" />
         </div>
       </section>
 
@@ -77,12 +61,13 @@ export default function HomePage() {
       <section className="section-pad" style={{ background: "var(--ivory)" }}>
         <div className="container grid-2">
           <div>
-            <p className="eyebrow mb-3">The shop</p>
-            <h2 className="display-lg text-charcoal">The patisserie in Manjeri</h2>
+            <p className="eyebrow mb-3">The cafe</p>
+            <h2 className="display-lg text-charcoal">Pâtisserie, coffee, and a room to sit</h2>
             <p className="body-lg mt-4 max-w-md">
-              Lots. Crème is a dessert studio at SJ Century Complex. Come in for
-              a cake from the case, a waffle, or a custom cake for a birthday
-              or wedding.
+              Lots. Crème is a French pâtisserie cafe at Kovilamkundu, Chengana
+              Bypass, Kacherippadi. Come in for coffee, pastry, a waffle, a cake
+              from the case, or a cake made for a date. A party hall is
+              available at the same place.
             </p>
             <div className="stack-btns mt-6 justify-start">
               <Link href="/about" className="btn btn-teal">
@@ -92,40 +77,23 @@ export default function HomePage() {
                 Find the shop
               </Link>
             </div>
-            <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-              Open daily, {site.hoursShort}
-              <br />
-              SJ Century Complex, near GGHSS
-              <br />
-              WhatsApp {site.phoneDisplay}
-            </p>
           </div>
-          <div className="hidden grid-cols-2 gap-3 md:grid">
-            {[images.roseCake, images.heartCake, images.lilacCake, images.celebrationCake].map(
-              (img, i) => (
-                <div
-                  key={img.src}
-                  className="relative overflow-hidden"
-                  style={{
-                    height: i % 2 === 0 ? 210 : 170,
-                    borderRadius: 16,
-                    alignSelf: i % 2 === 0 ? "start" : "end",
-                  }}
-                >
-                  <Image src={img.src} alt={img.alt} fill sizes="280px" className="object-cover" />
-                </div>
-              )
-            )}
+          <div className="relative hidden min-h-[420px] overflow-hidden md:block" style={{ borderRadius: 20 }}>
+            <Image
+              src={images.tableWindow.src}
+              alt={images.tableWindow.alt}
+              fill
+              sizes="560px"
+              className="object-cover"
+            />
           </div>
           <div className="md:hidden">
-            <SwipeRow label="cakes in the shop" size="film">
-              {[images.roseCake, images.heartCake, images.lilacCake, images.celebrationCake].map(
-                (img) => (
-                  <div key={img.src} className="relative overflow-hidden rounded-2xl">
-                    <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
-                  </div>
-                )
-              )}
+            <SwipeRow label="the cafe" size="film">
+              {shopMosaic.map((img) => (
+                <div key={img.src} className="relative overflow-hidden rounded-2xl">
+                  <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
+                </div>
+              ))}
             </SwipeRow>
           </div>
         </div>
@@ -134,8 +102,8 @@ export default function HomePage() {
       <section className="section-pad" style={{ background: "var(--card)" }}>
         <div className="container">
           <div className="mb-8 text-center">
-            <p className="eyebrow mb-3">Collections</p>
-            <h2 className="display-lg text-charcoal">Cakes, custom work, and the shop</h2>
+            <p className="eyebrow mb-3">The table</p>
+            <h2 className="display-lg text-charcoal">Coffee, pastry, waffles, and cakes</h2>
           </div>
           <SwipeRow label="collections" cols="4">
             {collections.map((item) => (
@@ -160,7 +128,71 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CtaBand />
+      <section className="section-pad mosaic-section" style={{ background: "var(--ivory)" }}>
+        <div className="container">
+          <div className="mb-8">
+            <p className="eyebrow mb-3">From the shop</p>
+            <h2 className="display-lg text-charcoal">Plates, pastry, and the case</h2>
+          </div>
+          <div className="hidden md:block">
+            <div className="shop-mosaic">
+              <figure className="shop-mosaic-wide">
+                <Image src={images.tableSpread.src} alt={images.tableSpread.alt} fill sizes="720px" className="object-cover" />
+              </figure>
+              <figure>
+                <Image src={images.tableWindow.src} alt={images.tableWindow.alt} fill sizes="360px" className="object-cover" />
+              </figure>
+              <figure>
+                <Image src={images.oreoSundae.src} alt={images.oreoSundae.alt} fill sizes="360px" className="object-cover" />
+              </figure>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <SwipeRow label="from the shop" size="film">
+              {[images.tableSpread, images.tableWindow, images.oreoSundae].map((img) => (
+                <div key={img.src} className="photo-card relative overflow-hidden rounded-2xl">
+                  <Image src={img.src} alt={img.alt} fill sizes="80vw" className="object-cover" />
+                </div>
+              ))}
+            </SwipeRow>
+          </div>
+        </div>
+      </section>
+
+      <section id="party-hall" className="section-pad" style={{ background: "var(--card)" }}>
+        <div className="container">
+          <PartyHallPanel>
+            <div className="stack-btns">
+              <Link href="/visit#party-hall" className="btn btn-gold">
+                Party hall details
+              </Link>
+              <a
+                href={site.whatsappParty}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-dark"
+              >
+                Enquire on WhatsApp
+              </a>
+            </div>
+          </PartyHallPanel>
+        </div>
+      </section>
+
+      <section className="visit-band">
+        <div className="container visit-band-inner">
+          <div>
+            <p className="eyebrow mb-2">Visit</p>
+            <p className="display-md text-charcoal">
+              {site.addressLines[0]} · {site.addressLines[2]}
+            </p>
+            <p className="body-lg mt-2">{site.hoursDaily}</p>
+          </div>
+          <Link href="/visit" className="btn btn-teal">
+            Find the shop
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }
